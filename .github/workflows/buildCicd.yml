@@ -1,0 +1,21 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main # Adjust this to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # You can choose a different runner if needed
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.10.0' # Adjust to your Flutter version
+
+      - name: Build APK
+        run: flutter build apk
