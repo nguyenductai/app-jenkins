@@ -2,12 +2,21 @@ pipeline {
     environment {
         flutter = "/Library/Flutter/bin/flutter"
     }
-    agent any
+
+
+    agent {
+        docker { image 'mobiledevops/flutter-sdk-image' }
+    }
 
     stages {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/nguyenductai/app-jenkins', branch: 'main'
+            }
+        }
+         stage('check version') {
+            steps {
+               sh 'flutter doctor -v'
             }
         }
 
