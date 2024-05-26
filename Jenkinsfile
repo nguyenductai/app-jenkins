@@ -10,7 +10,7 @@ pipeline {
         }
          stage('Merge request') {
             steps {
-               ///sh 'git merge --no-ff origin/main'
+                 sh 'git merge --no-ff origin/main'
                  sh 'echo Merge...'
             }
         }
