@@ -1,11 +1,15 @@
 pipeline {
-    environment {
-        flutter = "/Library/Flutter/bin/flutter"
+    agent {
+        docker {
+            image 'node:20.11.1-alpine3.19'
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // Optional: Additional arguments for the Docker run command
+        }
     }
 
-
-    agent {
-        docker { image 'mobiledevops/flutter-sdk-image' }
+    environment {
+        FLUTTER_HOME = '/path/to/flutter' // Path to the Flutter SDK
+        ANDROID_HOME = '/path/to/android/sdk' // Path to the Android SDK
+        PATH = "$FLUTTER_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
     }
 
     stages {
@@ -14,32 +18,50 @@ pipeline {
                 git url: 'https://github.com/nguyenductai/app-jenkins', branch: 'main'
             }
         }
-         stage('check version') {
+
+        stage('Setup Flutter Environment') {
             steps {
-               sh 'flutter doctor -v'
+                sh 'flutter doctor'
+                sh 'flutter upgrade'
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                sh 'echo Building...'
-               
-            
+                sh 'flutter pub get'
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                sh 'echo Testing...'
-               
+                sh 'flutter test'
             }
         }
 
-        stage('Deploy') {
+        stage('Build APK') {
             steps {
-                sh 'echo Deploying...'
-                // Add your deployment steps here
+                sh 'flutter build apk --debug' // Use --release for a release build
             }
+        }
+
+        stage('Archive APK') {
+            steps {
+                archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-debug.apk', allowEmptyArchive: true
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+
+        success {
+            echo 'Build succeeded!'
+        }
+
+        failure {
+            echo 'Build failed!'
         }
     }
 }
