@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo Building...'
-                archiveArtifacts 'build/app/outputs/apk/release /*.apk'
+                archiveArtifacts '*/app/outputs/apk/release /*.apk'
             
             }
         }
