@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-        stage('Setup Flutter Environment') {
+        //stage('Setup Flutter Environment') {
         //     steps {
         //         sh 'flutter doctor'
         //         sh 'flutter upgrade'
