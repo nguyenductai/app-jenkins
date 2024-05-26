@@ -5,6 +5,7 @@ pipeline {
     //         args '-v /var/run/docker.sock:/var/run/docker.sock' // Optional: Additional arguments for the Docker run command
     //     }
     // }
+     agent any
 
     // environment {
     //     FLUTTER_HOME = '/path/to/flutter' // Path to the Flutter SDK
