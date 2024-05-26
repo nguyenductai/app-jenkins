@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        flutter = "/Library/Flutter/bin/flutter"
+    }
     agent any
 
     stages {
@@ -11,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo Building...'
-                sh "flutter doctor"
+               
             
             }
         }
