@@ -1,10 +1,5 @@
 pipeline {
-    // agent {
-    //     docker {
-    //         image 'node:20.11.1-alpine3.19'
-    //         args '-v /var/run/docker.sock:/var/run/docker.sock' // Optional: Additional arguments for the Docker run command
-    //     }
-    // }
+  
      agent any
 
     // environment {
@@ -20,12 +15,19 @@ pipeline {
             }
         }
 
-        //stage('Setup Flutter Environment') {
-        //     steps {
-        //         sh 'flutter doctor'
-        //         sh 'flutter upgrade'
-        //     }
-        // }
+        stage('Setup Flutter Environment') {
+              agent {
+                        docker {
+                            image 'node:20.11.1-alpine3.19'
+                            args '-v /var/run/docker.sock:/var/run/docker.sock' // Optional: Additional arguments for the Docker run command
+                        }
+                     }
+            steps {
+                 sh 'node --version'
+                // sh 'flutter doctor'
+                //sh 'flutter upgrade'
+            }
+        }
 
         // stage('Install Dependencies') {
         //     steps {
