@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo Building...'
-                archiveArtifacts '*/app/outputs/apk/release /*.apk'
+                sh "flutter doctor"
             
             }
         }
