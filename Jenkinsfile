@@ -40,7 +40,7 @@ pipeline {
     post {
         failure {
               mail to: 'nguyenductaiqn97@gmail.com',
-                 cc : 'khenhnguyenqn@gamil.com'
+                 cc : 'khenhnguyenqn@gamil.com',
                 subject: "FAILED: Build", 
                 body: "Build failed  build no: .\n\nView the log at:\n\n\nBlue Ocean:\n"
         }
@@ -48,14 +48,14 @@ pipeline {
     
     success {
               mail to: 'nguyenductaiqn97@gmail.com',
-                 cc : 'khenhnguyenqn@gamil.com'
+                 cc : 'khenhnguyenqn@gamil.com',
                 subject: "success: Build", 
                 body: "Build success  build no: .\n\nView the log at:\n\n\nBlue Ocean:\n"
         }
         
         aborted{{
               mail to: 'nguyenductaiqn97@gmail.com',
-                 cc : 'khenhnguyenqn@gamil.com'
+                 cc : 'khenhnguyenqn@gamil.com',
                 subject: "FAILED: aborted", 
                 body: "Build aborted  build no: .\n\nView the log at:\n\n\nBlue Ocean:\n"
         }
