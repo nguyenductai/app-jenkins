@@ -41,22 +41,23 @@ pipeline {
         failure {
               mail to: 'nguyenductaiqn97@gmail.com',
                  cc : 'khenhnguyenqn@gamil.com'
-                subject: "FAILED: Build ${env.JOB_NAME}", 
-                body: "Build failed ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}.\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
+                subject: "FAILED: Build", 
+                body: "Build failed  build no: .\n\nView the log at:\n\n\nBlue Ocean:\n"
         }
+    }
     
     success {
               mail to: 'nguyenductaiqn97@gmail.com',
                  cc : 'khenhnguyenqn@gamil.com'
-                subject: "FAILED: Build ${env.JOB_NAME}", 
-                body: "Build Success ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}.\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
+                subject: "success: Build", 
+                body: "Build success  build no: .\n\nView the log at:\n\n\nBlue Ocean:\n"
         }
         
-        aborted{
+        aborted{{
               mail to: 'nguyenductaiqn97@gmail.com',
                  cc : 'khenhnguyenqn@gamil.com'
-                subject: "FAILED: Build ${env.JOB_NAME}", 
-                body: "Build aborted ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}.\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
+                subject: "FAILED: aborted", 
+                body: "Build aborted  build no: .\n\nView the log at:\n\n\nBlue Ocean:\n"
         }
     }
 }
