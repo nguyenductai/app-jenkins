@@ -1,5 +1,13 @@
 # appcicd
 
+# build image
+docker build -t flutter-app . 
+
+# build container bash
+docker run -it flutter-app bash
+
+
+
 A new Flutter project.
 
 ## Getting Started
