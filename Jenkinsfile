@@ -83,6 +83,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    // Executes the Maven build command inside the Docker container
+                    docker.image('maven:latest').inside {
+                        sh 'mvn clean install'
+                    }
+                }
+            }
+            steps {
+                script {
                     // Build Docker image
                     sh 'docker build -t ${DOCKER_IMAGE} .'
                 }
