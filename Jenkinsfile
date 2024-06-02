@@ -100,7 +100,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                 sh 'builddd'
+                  sh 'echo Deploying...'
                 // script {
                 //     // Run Docker container
                 //     sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}'
@@ -110,7 +110,7 @@ pipeline {
 
         stage('Archive APK') {
             steps {
-                 sh 'builddd'
+                 sh 'echo Deploying...'
                 // script {
                 //     // Archive the APK file for download
                 //     archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: true
