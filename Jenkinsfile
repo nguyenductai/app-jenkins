@@ -84,7 +84,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    sh 'docker build -t ${DOCKER_IMAGE} .'
                 }
             }
         }
@@ -93,7 +93,7 @@ pipeline {
             steps {
                 script {
                     // Run Docker container
-                    sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}:${DOCKER_TAG}'
+                    sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}'
                 }
             }
         }
