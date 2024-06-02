@@ -2,23 +2,23 @@
 FROM ubuntu:20.04
 
 # Set the working directory
-WORKDIR /app
+#WORKDIR /app
 
 # # Prevent interactive prompts from blocking the installation
 # # ENV DEBIAN_FRONTEND=noninteractive
 
 # # Install necessary tools and dependencies
-# RUN apt-get update && \
-#     apt-get install -y --no-install-recommends \
-#     wget \
-#     curl \
-#     unzip \
-#     xz-utils \
-#     git \
-#     libglu1-mesa \
-#     openjdk-11-jdk \
-#     ca-certificates && \
-#     rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    wget \
+    curl \
+    unzip \
+    xz-utils \
+    git \
+    libglu1-mesa \
+    openjdk-11-jdk \
+    ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
 # # Install Flutter SDK
 # RUN git clone https://github.com/flutter/flutter.git -b stable /usr/local/flutter

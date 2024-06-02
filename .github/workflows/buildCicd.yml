@@ -1,45 +1,45 @@
-name: Build APK
+# name: Build APK
 
-on:
-  push:
-    branches:
-      - main # Adjust this to your main branch name
+# on:
+#   push:
+#     branches:
+#       - main # Adjust this to your main branch name
 
-jobs:
-  build:
-    runs-on: ubuntu-latest # You can choose a different runner if needed
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest # You can choose a different runner if needed
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
 
-      - name: Cache Flutter SDK
-        uses: actions/cache@v2
-        with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-flutter-
+#       - name: Cache Flutter SDK
+#         uses: actions/cache@v2
+#         with:
+#           path: ~/.pub-cache
+#           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+#           restore-keys: |
+#             ${{ runner.os }}-flutter-
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.10.0' # Adjust to your Flutter version
+#       - name: Set up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: '3.10.0' # Adjust to your Flutter version
 
-      - name: Install dependencies
-        run: flutter pub get
+#       - name: Install dependencies
+#         run: flutter pub get
 
-      - name: Run tests
-        run: flutter test
+#       - name: Run tests
+#         run: flutter test
 
-      - name: Build APK
-        run: |
-          echo "Building APK..."
-          flutter build apk
-          ls -l build/app/outputs/flutter-apk/ # Log the contents of the directory to verify if APK is generated
+#       - name: Build APK
+#         run: |
+#           echo "Building APK..."
+#           flutter build apk
+#           ls -l build/app/outputs/flutter-apk/ # Log the contents of the directory to verify if APK is generated
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-release.apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+#       - name: Upload APK
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: app-release.apk
+#           path: build/app/outputs/flutter-apk/app-release.apk
