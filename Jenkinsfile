@@ -9,6 +9,7 @@ pipeline {
         }
         stage('Merge request') {
             steps {
+                sh 'flutter doctor -v'
                 sh 'echo Merge...'
             }
         }
