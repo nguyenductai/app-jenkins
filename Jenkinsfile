@@ -82,6 +82,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                sh 'builddd'
                 // script {
                 //     // Executes the Maven build command inside the Docker container
                 //     docker.image('maven:latest').inside {
@@ -99,6 +100,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
+                 sh 'builddd'
                 // script {
                 //     // Run Docker container
                 //     sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}'
@@ -108,6 +110,7 @@ pipeline {
 
         stage('Archive APK') {
             steps {
+                 sh 'builddd'
                 // script {
                 //     // Archive the APK file for download
                 //     archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: true
