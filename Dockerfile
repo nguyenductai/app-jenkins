@@ -1,8 +1,8 @@
 # Use an official Ubuntu as a base image
-#FROM ubuntu:20.04
+FROM ubuntu:20.04
 
 # Set the working directory
-#WORKDIR /app
+WORKDIR /app
 
 # # Prevent interactive prompts from blocking the installation
 # # ENV DEBIAN_FRONTEND=noninteractive
@@ -56,5 +56,3 @@
 
 # # Define the entry point for the container (optional)
 # # CMD ["flutter", "run", "--release"]
-
-FROM mobiledevops/flutter-sdk-image:3.10.0
