@@ -56,3 +56,5 @@ RUN apt-get update && \
 
 # # Define the entry point for the container (optional)
 # # CMD ["flutter", "run", "--release"]
+
+FROM mobiledevops/flutter-sdk-image:3.10.0
