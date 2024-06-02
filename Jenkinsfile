@@ -89,29 +89,29 @@ pipeline {
                 //     }
                 // }
             }
-            steps {
-                // script {
-                //     // Build Docker image
-                //     sh 'docker build -t ${DOCKER_IMAGE} .'
-                // }
-            }
+            // steps {
+            //     // script {
+            //     //     // Build Docker image
+            //     //     sh 'docker build -t ${DOCKER_IMAGE} .'
+            //     // }
+            // }
         }
 
         stage('Run Docker Container') {
             steps {
-                script {
-                    // Run Docker container
-                    sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}'
-                }
+                // script {
+                //     // Run Docker container
+                //     sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}'
+                // }
             }
         }
 
         stage('Archive APK') {
             steps {
-                script {
-                    // Archive the APK file for download
-                    archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: true
-                }
+                // script {
+                //     // Archive the APK file for download
+                //     archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: true
+                // }
             }
         }
     }
