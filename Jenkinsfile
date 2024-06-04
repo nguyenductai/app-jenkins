@@ -106,7 +106,7 @@ pipeline {
                 // }
             }
         }
-        stage('Archive APK') {
+        stage('Archive APK') { 
             steps {
                  sh 'echo Deploying...'
                 // script {
