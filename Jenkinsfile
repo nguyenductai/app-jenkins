@@ -65,65 +65,79 @@
 //     // }
 // }
 
+// pipeline {
+//     agent any
+
+//     environment {
+//         DOCKER_IMAGE = 'my-flutter-jenkins-build'
+//         DOCKER_TAG = 'latest'
+//     }
+
+//     stages {
+//         stage('Clone Repository') {
+//             steps {
+//                 git url: 'https://github.com/nguyenductai/app-jenkins', branch: 'main'
+//             }
+//         }
+
+//         // stage('Build Docker Image') {
+//         //     steps {
+//         //         sh 'builddd'
+//         //         // script {
+//         //         //     // Executes the Maven build command inside the Docker container
+//         //         //     docker.image('maven:latest').inside {
+//         //         //         sh 'mvn clean install'
+//         //         //     }
+//         //         // }
+//         //     }
+//         //     // steps {
+//         //     //     // script {
+//         //     //     //     // Build Docker image
+//         //     //     //     sh 'docker build -t ${DOCKER_IMAGE} .'
+//         //     //     // }
+//         //     // }
+//         // }
+
+//         stage('Run Docker Container') {
+//             steps {
+//                   sh 'echo Deploying...'
+//                 // script {
+//                 //     // Run Docker container
+//                 //     sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}'
+//                 // }
+//             }
+//         }
+
+//         stage('Archive APK') {
+//             steps {
+//                  sh 'echo Deploying...'
+//                 // script {
+//                 //     // Archive the APK file for download
+//                 //     archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: true
+//                 // }
+//             }
+//         }
+//     }
+
+//     post {
+//         success {
+//             archiveArtifacts artifacts: 'lib/main.dart', allowEmptyArchive: true
+//             echo 'Build completed successfully'
+//         }
+//         failure {
+//             echo 'Build failed'
+//         }
+//     }
+// }
+
 pipeline {
-    agent any
-
-    environment {
-        DOCKER_IMAGE = 'my-flutter-jenkins-build'
-        DOCKER_TAG = 'latest'
-    }
+    agent { dockerfile true }
     stages {
-        stage('Clone Repository') {
+        stage('Test') {
             steps {
-                git url: 'https://github.com/nguyenductai/app-jenkins', branch: 'main'
+                sh 'node --version'
+                sh 'svn --version'
             }
-        }
-
-        // stage('Build Docker Image') {
-        //     steps {
-        //         sh 'builddd'
-        //         // script {
-        //         //     // Executes the Maven build command inside the Docker container
-        //         //     docker.image('maven:latest').inside {
-        //         //         sh 'mvn clean install'
-        //         //     }
-        //         // }
-        //     }
-        //     // steps {
-        //     //     // script {
-        //     //     //     // Build Docker image
-        //     //     //     sh 'docker build -t ${DOCKER_IMAGE} .'
-        //     //     // }
-        //     // }
-        // }
-
-        stage('Run Docker Container') {
-            steps {
-                  sh 'echo Deploying...'
-                // script {
-                //     // Run Docker container
-                //     sh 'docker run --rm -v $WORKSPACE/build/app/outputs/flutter-apk:/app/build/app/outputs/flutter-apk ${DOCKER_IMAGE}'
-                // }
-            }
-        }
-        stage('Archive APK') { 
-            steps {
-                 sh 'echo Deploying...'
-                // script {
-                //     // Archive the APK file for download
-                //     archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: true
-                // }
-            }
-        }
-    }
-
-    post {
-        success {
-            archiveArtifacts artifacts: 'lib/main.dart', allowEmptyArchive: true
-            echo 'Build completed successfully'
-        }
-        failure {
-            echo 'Build failed'
         }
     }
 }
