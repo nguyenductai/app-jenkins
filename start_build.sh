@@ -20,4 +20,10 @@ fi
 echo "App version: $version"
 }
 
+docker --version
+
+docker build -t flutter-app-v1 .
+
+docker run -it flutter-app-v1 bash 
+
 getVersion
