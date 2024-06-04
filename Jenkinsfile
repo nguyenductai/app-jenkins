@@ -121,6 +121,7 @@ pipeline {
 
     post {
         success {
+            archiveArtifacts artifacts: 'main.dart', allowEmptyArchive: true
             echo 'Build completed successfully'
         }
         failure {
