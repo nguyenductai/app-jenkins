@@ -74,9 +74,32 @@ pipeline {
     }
 
     stages {
+         stage('Maven Install') {
+            agent {
+                docker {
+                image 'maven:3.5.0' // Using Maven 3.5.0 Docker image
+                }
+            }
+            steps {
+                sh 'mvn clean install' // Running Maven clean install
+            }
+    }
+    
         stage('Clone Repository') {
             steps {
                 git url: 'https://github.com/nguyenductai/app-jenkins', branch: 'main'
+            }
+        }
+         stage('Docker Build') {
+             agent any // Using any available agent
+            steps {
+                sh 'docker build -t flutter-app .' // Building Docker image
+            }
+        }
+          stage('Docker run') {
+             agent any // Using any available agent
+            steps {
+                sh 'docker run -it flutter-app bash' // Building Docker image
             }
         }
 
