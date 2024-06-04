@@ -76,8 +76,9 @@ pipeline {
     stages {
          stage('Maven Install') {
             agent {
+                sh'docker --version'
                 docker {
-                image 'maven:3.5.0' // Using Maven 3.5.0 Docker image
+                      image 'maven:3.5.0' // Using Maven 3.5.0 Docker image
                 }
             }
             steps {
