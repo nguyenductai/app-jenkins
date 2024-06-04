@@ -63,7 +63,9 @@
 # RUN apt install git
 # RUN git clone https://github.com/flutter/flutter.git -b stable /usr/local/flutter
 
-# Use the base image
+# case=====1
+
+#Use the base image
 FROM runmymind/docker-android-sdk:ubuntu-standalone-20240227
 
 # Set the working directory
@@ -79,6 +81,8 @@ ENV PATH=$FLUTTER_HOME/bin:$PATH
 
 # Install Flutter SDK
 RUN git clone https://github.com/flutter/flutter.git $FLUTTER_HOME
+
+#RUN git -C $FLUTTER_HOME checkout 3.10.0
 # RUN curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.0-stable.tar.xz && \
 #     mkdir -p $FLUTTER_HOME && \
 #     tar xf flutter.tar.xz -C $FLUTTER_HOME --strip-components=1 && \
@@ -87,42 +91,12 @@ RUN git clone https://github.com/flutter/flutter.git $FLUTTER_HOME
 # Run Flutter doctor to verify installation (optional)
 
 COPY . .
-RUN flutter pub get
-RUN flutter doctor -v
 
-# Expose any ports if needed
-# EXPOSE 8080
+RUN flutter build apk 
+#RUN flutter pub get
+#RUN flutter doctor -v
 
-# Define the command to run your application
-# CMD ["executable","param1","param2"]
-#===========end=====v2--------------
-
-# Use the base image
-FROM runmymind/docker-android-sdk:ubuntu-standalone-20240227
-
-# Set the working directory
-WORKDIR /app
-
-# Install necessary dependencies for Flutter
-RUN apt-get update && \
-    apt-get install -y curl git unzip xz-utils libglu1-mesa && \
-    apt-get upgrade -y
-
-# Set up environment variables for Flutter
-ENV FLUTTER_HOME=/usr/local/flutter
-ENV PATH=$FLUTTER_HOME/bin:$PATH
-
-# Install Flutter SDK version 3.10.0
-RUN curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.0-stable.tar.xz && \
-    mkdir -p $FLUTTER_HOME && \
-    tar xf flutter.tar.xz -C $FLUTTER_HOME --strip-components=1 && \
-    rm flutter.tar.xz
-
-# Install Flutter dependencies
-RUN flutter doctor
-RUN flutter precache
-
-# Create Jenkins user and set permissions
+#Create Jenkins user and set permissions
 RUN useradd -ms /bin/bash jenkins
 RUN chown -R jenkins:jenkins /app
 
@@ -134,16 +108,69 @@ WORKDIR /app
 # Copy the Flutter project into the Docker container
 COPY . /app
 
-# Run the Flutter build command
-RUN flutter build apk --release
+# RUN flutter build apk 
 
-# Ensure the output directory exists and has correct permissions
-RUN mkdir -p /app/build/app/outputs/flutter-apk && \
-    chown -R jenkins:jenkins /app/build
+# #Ensure the output directory exists and has correct permissions
+# RUN mkdir -p /app/build/app/outputs/flutter-apk && \
+#     chown -R jenkins:jenkins /app/build
 
-# Expose the build output as a volume (optional)
+#Expose the build output as a volume (optional)
 VOLUME /app/build/app/outputs/flutter-apk
 
-# Define the command to run your application (if any)
+
+#-----end 
+
+# Expose any ports if needed
+# EXPOSE 8080
+
+# Define the command to run your application
 # CMD ["executable","param1","param2"]
+#===========end=====v2--------------
+
+# Use the base image
+# FROM runmymind/docker-android-sdk:ubuntu-standalone-20240227
+
+# # Set the working directory
+# WORKDIR /app
+
+# # Install necessary dependencies for Flutter
+# RUN apt-get update && \
+#     apt-get install -y curl git unzip xz-utils libglu1-mesa && \
+#     apt-get upgrade -y
+
+# # Set up environment variables for Flutter
+# ENV FLUTTER_HOME=/usr/local/flutter
+# ENV PATH=$FLUTTER_HOME/bin:$PATH
+
+# # Install Flutter SDK version 3.10.0
+# RUN curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.0-stable.tar.xz && \
+#     mkdir -p $FLUTTER_HOME && \
+#     tar xf flutter.tar.xz -C $FLUTTER_HOME --strip-components=1 && \
+#     rm flutter.tar.xz
+
+# Install Flutter dependencies
+#RUN flutter doctor
+#RUN flutter precache
+
+# Create Jenkins user and set permissions
+#RUN useradd -ms /bin/bash jenkins
+#RUN chown -R jenkins:jenkins /app
+
+#USER jenkins
+
+# # Set the working directory for the Jenkins user
+#WORKDIR /app
+
+# # Copy the Flutter project into the Docker container
+#COPY . /app
+
+# Run the Flutter build command
+#RUN flutter build apk 
+
+# Ensure the output directory exists and has correct permissions
+# RUN mkdir -p /app/build/app/outputs/flutter-apk && \
+#     chown -R jenkins:jenkins /app/build
+
+# Expose the build output as a volume (optional)
+#VOLUME /app/build/app/outputs/flutter-apk
 
