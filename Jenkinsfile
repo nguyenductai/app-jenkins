@@ -131,9 +131,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs "nodejs"
-    }
     stages {
         stage ("SSH Server"){
             steps {
