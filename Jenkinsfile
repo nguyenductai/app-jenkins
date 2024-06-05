@@ -141,13 +141,15 @@ pipeline {
             steps {
 
             sshagent (credentials: [SSH_CREDENTIALS_ID]) {
-                    sh """ssh -i ~/.ssh/id_rsa ${SSH_USER}@${REMOTE_HOST}<< EOF
-                        echo "Running multiple commands"
-                        whoami
-                        hostname
-                        df -h
-                        EOF
-                    """
+                sh 'ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o IdentitiesOnly=yes macbookprom1@172.20.10.5'
+                    // sh """
+                    //     ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} << EOF
+                    //     echo "Running multiple commands"
+                    //     whoami
+                    //     hostname
+                    //     df -h
+                    //     EOF
+                    // """
                 }
 
                // sh 'docker build -t flutter-app-v1 .'
