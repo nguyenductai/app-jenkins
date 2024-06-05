@@ -137,10 +137,10 @@ pipeline {
                 sshagent(['nguyenductai']) {
                 
 
-  sh 'chmod +x start_build.sh'
+                    sh 'chmod +x start_build.sh'
                     // Run the Bash script
                    sh './start_build.sh'
-}
+              }
             }
         }
     }
