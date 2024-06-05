@@ -131,7 +131,7 @@
 pipeline {
     agent any
     environment {
-        SSH_CREDENTIALS_ID = '522dd343-ade3-43be-a7a3-c913e485d30c'
+        SSH_CREDENTIALS_ID = 'ssh-app'
         REMOTE_HOST = '172.20.10.5'
         SSH_USER = 'macbookprom1'
     }
@@ -139,7 +139,6 @@ pipeline {
     stages {
         stage ("SSH Server"){
             steps {
-
 
             sshagent (credentials: [SSH_CREDENTIALS_ID]) {
                 // sh 'sshpass -p 1234 ssh -o PreferredAuthentications=password macbookprom1@172.20.10.5'
