@@ -82,7 +82,7 @@ ENV PATH=$FLUTTER_HOME/bin:$PATH
 # Install Flutter SDK
 RUN git clone https://github.com/flutter/flutter.git $FLUTTER_HOME
 
-RUN git -C $FLUTTER_HOME checkout 3.10.0
+#RUN git -C $FLUTTER_HOME checkout 3.10.0
 # RUN curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.0-stable.tar.xz && \
 #     mkdir -p $FLUTTER_HOME && \
 #     tar xf flutter.tar.xz -C $FLUTTER_HOME --strip-components=1 && \
