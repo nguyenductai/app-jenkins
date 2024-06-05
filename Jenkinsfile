@@ -129,7 +129,12 @@
 // }
 
 pipeline {
-    agent any
+    agent {
+          docker {
+            image 'docker:latest'
+            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     stages {
         stage ("SSH Server"){
