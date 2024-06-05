@@ -130,12 +130,26 @@
 
 pipeline {
     agent any
+    environment {
+        SSH_CREDENTIALS_ID = '522dd343-ade3-43be-a7a3-c913e485d30c'
+        REMOTE_HOST = '172.20.10.5'
+        SSH_USER = 'macbookprom1'
+    }
 
     stages {
         stage ("SSH Server"){
             steps {
 
-             sshCommand remote: 'macbookprom1@172.20.10.5', command: 'your-command'
+            sshagent (credentials: [SSH_CREDENTIALS_ID]) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} << EOF
+                        echo "Running multiple commands"
+                        whoami
+                        hostname
+                        df -h
+                        EOF
+                    """
+                }
 
                // sh 'docker build -t flutter-app-v1 .'
                 // sh 'chmod +x start_build.sh'
