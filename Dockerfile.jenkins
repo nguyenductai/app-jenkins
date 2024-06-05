@@ -1,7 +1,20 @@
+# FROM jenkins/jenkins:lts
+
+# # Cài đặt Docker CLI
+# USER root
+# RUN apt-get update && apt-get install -y docker.io
+
+# USER jenkins
+
 FROM jenkins/jenkins:lts
 
-# Cài đặt Docker CLI
 USER root
+
+# Install Docker CLI
 RUN apt-get update && apt-get install -y docker.io
+
+# Add the Jenkins user to the Docker group
+# RUN groupadd -g 999 docker
+RUN usermod -aG docker jenkins
 
 USER jenkins
