@@ -135,7 +135,8 @@ pipeline {
         stage ("SSH Server"){
             steps {
 
-                sh 'docker --version'
+             sshCommand remote: 'macbookprom1@172.20.10.5', command: 'your-command'
+
                // sh 'docker build -t flutter-app-v1 .'
                 // sh 'chmod +x start_build.sh'
                 // sh './start_build.sh'
