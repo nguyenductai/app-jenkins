@@ -26,9 +26,7 @@
 
 # docker --version
 #docker ps
-#docker build -t flutter-app-v1 .
-
-docker buildx build -t flutter-app-v1 .
+docker build -t flutter-app-v1 .
 
 docker run -it flutter-app-v1 bash 
 
