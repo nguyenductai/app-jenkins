@@ -26,8 +26,8 @@
 
 # docker --version
 #docker ps
-# docker build -t my-image-2 .
+docker build -t flutter-app-v1 .
 
-# docker run -it flutter-app-v1 bash 
+docker run -it flutter-app-v1 bash 
 
 # getVersion
