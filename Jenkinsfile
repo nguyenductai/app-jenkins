@@ -134,9 +134,12 @@ pipeline {
     stages {
         stage ("SSH Server"){
             steps {
+               sh 'echo "SSH_AUTH_SOCK: $SSH_AUTH_SOCK"
+'
+              }
+            }
+            steps {
                 sshagent(['nguyenductai']) {
-                
-
                     sh 'chmod +x start_build.sh'
                     // Run the Bash script
                    sh './start_build.sh'
