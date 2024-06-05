@@ -141,9 +141,11 @@ pipeline {
                 // sh './start_build.sh'
                 
                  sshagent(['testv1']) {
-                    sh 'chmod +x start_build.sh'
-                    // Run the Bash script
-                   sh './start_build.sh'
+                   sh "sshpass -p '1234' ssh user@host 'your-command'"
+
+                //     sh 'chmod +x start_build.sh'
+                //     // Run the Bash script
+                //    sh './start_build.sh'
               }
             }
         }
