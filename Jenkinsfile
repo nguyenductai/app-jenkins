@@ -134,11 +134,13 @@ pipeline {
     stages {
         stage ("SSH Server"){
             steps {
-                sshagent(['tainguyen']) {
-                    sh 'chmod +x start_build.sh'
-                    // Run the Bash script
-                   sh './start_build.sh'
-              }
+
+                sh 'docker --version'
+            //     sshagent(['tainguyen']) {
+            //         sh 'chmod +x start_build.sh'
+            //         // Run the Bash script
+            //        sh './start_build.sh'
+            //   }
             }
         }
     }
