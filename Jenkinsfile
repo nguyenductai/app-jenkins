@@ -135,7 +135,8 @@ pipeline {
         stage ("SSH Server"){
             steps {
 
-                sh 'docker --version'
+                //sh 'docker --version'
+                sh './start_build.sh'
             //     sshagent(['tainguyen']) {
             //         sh 'chmod +x start_build.sh'
             //         // Run the Bash script
