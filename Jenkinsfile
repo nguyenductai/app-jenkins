@@ -141,8 +141,7 @@ pipeline {
             steps {
 
             sshagent (credentials: [SSH_CREDENTIALS_ID]) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} << EOF
+                    sh """ssh -i ~/.ssh/id_rsa ${SSH_USER}@${REMOTE_HOST}<< EOF
                         echo "Running multiple commands"
                         whoami
                         hostname
