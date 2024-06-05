@@ -129,19 +129,14 @@
 // }
 
 pipeline {
-    agent {
-          docker {
-           image 'docker:latest'
-           args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
 
     stages {
         stage ("SSH Server"){
             steps {
 
                 sh 'docker --version'
-                sh 'docker build -t flutter-app-v1 .'
+               // sh 'docker build -t flutter-app-v1 .'
                 // sh 'chmod +x start_build.sh'
                 // sh './start_build.sh'
             //     sshagent(['tainguyen']) {
