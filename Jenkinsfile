@@ -129,28 +129,21 @@
 // }
 
 pipeline {
-    agent {
-        docker {
-            image 'ubuntu:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+    agent any
+
+    tools {
+        nodejs "nodejs"
     }
     stages {
-        stage('Build') {
+        stage ("SSH Server"){
             steps {
-                sh 'apt-get update && apt-get install -y curl'
-                sh 'curl https://example.com -o index.html'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'echo "Running tests..."'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'docker build -t my-image .'
-                sh 'docker run -d -p 8080:80 my-image'
+                sshagent(['nguyenductai']) {
+                
+
+  sh 'chmod +x start_build.sh'
+                    // Run the Bash script
+                   sh './start_build.sh'
+}
             }
         }
     }
