@@ -136,6 +136,7 @@ pipeline {
             steps {
 
                 //sh 'docker --version'
+                sh 'chmod +x start_build.sh'
                 sh './start_build.sh'
             //     sshagent(['tainguyen']) {
             //         sh 'chmod +x start_build.sh'
