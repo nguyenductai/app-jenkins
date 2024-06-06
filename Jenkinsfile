@@ -131,8 +131,8 @@
 pipeline {
     agent any
     environment {
-        SSH_CREDENTIALS_ID = 'ssh-app'
-        REMOTE_HOST = '172.20.10.5'
+        SSH_CREDENTIALS_ID = '522dd343-ade3-43be-a7a3-c913e485d30c'
+        REMOTE_HOST = '192.168.9.6'
         SSH_USER = 'macbookprom1'
     }
 
@@ -141,7 +141,7 @@ pipeline {
             steps {
 
             sshagent (credentials: [SSH_CREDENTIALS_ID]) {
-                sh 'ssh -o PubkeyAuthentication=no -o PasswordAuthentication=no macbookprom1@172.20.10.5'
+                sh 'ssh -o PubkeyAuthentication=no -o PasswordAuthentication=no macbookprom1@192.168.9.6'
                 // sh 'ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o IdentitiesOnly=yes macbookprom1@172.20.10.5'
                     // sh """
                     //     ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} << EOF
