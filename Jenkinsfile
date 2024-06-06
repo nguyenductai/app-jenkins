@@ -147,6 +147,7 @@ pipeline {
         hostname; \\
         df -h'
     """
+    sh 'echo "Running multiple commands'
 }
 
 

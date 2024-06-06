@@ -24,10 +24,10 @@
 
 #ssh macbookprom1@192.168.9.6  "docker build -t flutter-app-v1 ."
 
-# docker --version
+ docker --version
 #docker ps
-docker build -t flutter-app-v1 .
+#docker build -t flutter-app-v1 .
 
-docker run -it flutter-app-v1 bash 
+#docker run -it flutter-app-v1 bash 
 
 # getVersion
