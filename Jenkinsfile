@@ -144,7 +144,7 @@ pipeline {
         ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} \\
         'echo "Running multiple commands"; \\
         whoami; \\
-        cd Desktop/app-ci-cd/appcicd;pwd'
+        cd Desktop/app-ci-cd/appcicd;\\ sh start_build.sh'
     """
 }
 
