@@ -144,9 +144,8 @@ pipeline {
         ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} \\
         'echo "Running multiple commands"; \\
         whoami; \\
-        hostname'
+        cd Desktop/app-ci-cd/appcicd;pwd'
     """
-    sh 'cd Desktop/app-ci-cd/appcicd'
 }
 
 
