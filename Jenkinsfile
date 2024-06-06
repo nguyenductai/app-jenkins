@@ -139,16 +139,16 @@ pipeline {
     stages {
         stage ("SSH Server"){
             steps {
-           sshagent(credentials: [SSH_CREDENTIALS_ID]) {
+     sshagent(credentials: [SSH_CREDENTIALS_ID]) {
     sh """
-        cat << 'EOF' | ssh -T -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST}
-        echo "Running multiple commands"
-        whoami
-        hostname
-        df -h
-EOF
+        ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} \\
+        'echo "Running multiple commands"; \\
+        whoami; \\
+        hostname; \\
+        df -h'
     """
 }
+
 
                // sh 'docker build -t flutter-app-v1 .'
                 // sh 'chmod +x start_build.sh'
