@@ -145,7 +145,7 @@ pipeline {
         'echo "Running multiple commands"; \\
         whoami; \\
         hostname; \\
-        df -h'
+        ls -l'
     """
 }
 
