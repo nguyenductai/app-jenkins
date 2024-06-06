@@ -140,13 +140,13 @@ pipeline {
         stage ("SSH Server"){
             steps {
      sshagent(credentials: [SSH_CREDENTIALS_ID]) {
-    sh """
-               scp -o StrictHostKeyChecking=no Desktop/app-ci-cd/appcicd/start_build.sh ${SSH_USER}@${REMOTE_HOST}:~/  # Upload shell script to remote host
-
-              ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} 'cd ~Desktop/app-ci-cd/appcicd; chmod +x start_build.sh; ./start_build.sh'
-
+  sh """
+        ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} \\
+        'echo "Running multiple commands"; \\
+        whoami; \\
+        hostname; \\
+        df -h'
     """
-    sh 'echo "Running multiple commands'
 }
 
 
