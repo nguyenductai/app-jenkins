@@ -145,7 +145,7 @@ pipeline {
         'echo "Running multiple commands"; \\
         whoami; \\
         hostname; \\
-        ls -l'
+        cd Desktop/app-ci-cd/appcicd'
     """
 }
 
