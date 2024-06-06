@@ -23,8 +23,8 @@
 #docker run --name my_container_name my_image
 
 #ssh macbookprom1@192.168.9.6  "docker build -t flutter-app-v1 ."
-
- docker --version
+echo "App version: 2"
+#  docker --version
 #docker ps
 #docker build -t flutter-app-v1 .
 
