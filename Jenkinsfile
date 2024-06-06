@@ -139,10 +139,7 @@ pipeline {
     stages {
         stage ("SSH Server"){
             steps {
-
             sshagent (credentials: [SSH_CREDENTIALS_ID]) {
-                // sh 'ssh -o PubkeyAuthentication=no -o PasswordAuthentication=no macbookprom1@192.168.9.6'
-               // sh 'ssh -o StrictHostKeyChecking=no -l macbookprom1 192.168.1.106 uname -a'
                     sh """
                         ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} << EOF
                         echo "Running multiple commands"
