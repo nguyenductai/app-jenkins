@@ -141,9 +141,10 @@ pipeline {
             steps {
      sshagent(credentials: [SSH_CREDENTIALS_ID]) {
     sh """
-               scp -o StrictHostKeyChecking=no Users/macbookprom1/Desktop/app-ci-cd/appcicd/start_build.sh ${SSH_USER}@${REMOTE_HOST}:~/  # Upload shell script to remote host
+               scp -o StrictHostKeyChecking=no Desktop/app-ci-cd/appcicd/start_build.sh ${SSH_USER}@${REMOTE_HOST}:~/  # Upload shell script to remote host
 
-       ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} 'chmod +x ~/start_build.sh; ~/start_build.sh'
+              ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} 'cd ~Desktop/app-ci-cd/appcicd; chmod +x start_build.sh; ./start_build.sh'
+
     """
     sh 'echo "Running multiple commands'
 }
