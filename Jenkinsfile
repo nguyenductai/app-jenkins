@@ -131,7 +131,7 @@
 pipeline {
     agent any
     environment {
-        SSH_CREDENTIALS_ID = '522dd343-ade3-43be-a7a3-c913e485d30c'
+        SSH_CREDENTIALS_ID = 'ssh-app'
         REMOTE_HOST = '192.168.9.6'
         SSH_USER = 'macbookprom1'
     }
