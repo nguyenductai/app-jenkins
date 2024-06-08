@@ -128,42 +128,54 @@
 //     }
 // }
 
-pipeline {
-    agent any
-    environment {
-        SSH_CREDENTIALS_ID = 'ssh-app'
-        REMOTE_HOST = '192.168.9.6'
-        SSH_USER = 'macbookprom1'
-    }
+// pipeline {
+//     agent any
+//     environment {
+//         SSH_CREDENTIALS_ID = 'ssh-app'
+//         REMOTE_HOST = '192.168.9.6'
+//         SSH_USER = 'macbookprom1'
+//     }
 
-    stages {
-        stage ("SSH Server"){
-            steps {
-     sshagent(credentials: [SSH_CREDENTIALS_ID]) {
- sh """
-        ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} \\
-        'echo "Running multiple commands"; \\
-        whoami; \\
-        cd Desktop/app-ci-cd/appcicd; \\ pwd; \\ chmod +x start_build.sh; \\ ./start_build.sh'
-    """
-}
+//     stages {
+//         stage ("SSH Server"){
+//             steps {
+//      sshagent(credentials: [SSH_CREDENTIALS_ID]) {
+//  sh """
+//         ssh -o StrictHostKeyChecking=no ${SSH_USER}@${REMOTE_HOST} \\
+//         'echo "Running multiple commands"; \\
+//         whoami; \\
+//         cd Desktop/app-ci-cd/appcicd; \\ pwd; \\ chmod +x start_build.sh; \\ ./start_build.sh'
+//     """
+// }
 
 
-               // sh 'docker build -t flutter-app-v1 .'
-                // sh 'chmod +x start_build.sh'
-                // sh './start_build.sh'
+//                // sh 'docker build -t flutter-app-v1 .'
+//                 // sh 'chmod +x start_build.sh'
+//                 // sh './start_build.sh'
                 
-            //      sshagent(['testv1']) {
-            //        sh "sshpass -p '1234' ssh user@host 'your-command'"
+//             //      sshagent(['testv1']) {
+//             //        sh "sshpass -p '1234' ssh user@host 'your-command'"
 
-            //     //     sh 'chmod +x start_build.sh'
-            //     //     // Run the Bash script
-            //     //    sh './start_build.sh'
-            //   }
-            //  script {
-            //         // Chạy lệnh SSH
-            //         //sshCommand remote: 'macbookprom1@172.20.10.5', command: 'your-command'
-            //     }
+//             //     //     sh 'chmod +x start_build.sh'
+//             //     //     // Run the Bash script
+//             //     //    sh './start_build.sh'
+//             //   }
+//             //  script {
+//             //         // Chạy lệnh SSH
+//             //         //sshCommand remote: 'macbookprom1@172.20.10.5', command: 'your-command'
+//             //     }
+//             }
+//         }
+//     }
+// }
+
+pipeline {
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'ls'
+            
             }
         }
     }

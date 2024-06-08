@@ -1,0 +1,39 @@
+# services:
+#   jenkins:
+#     build:
+#       context: ./jenkins-dockerfile
+#       dockerfile: Dockerfile
+#     container_name: jenkinsdockerfile
+#     ports:
+#       - "8080:8080"
+#       - "50000:50000"
+#     volumes:
+#       - jenkins_home:/var/jenkins_home
+#       - /var/run/docker.sock:/var/run/docker.sock
+#     environment:
+#       - DOCKER_HOST=tcp://docker:2376
+#       - DOCKER_TLS_VERIFY=0
+#       - DOCKER_CERT_PATH=/certs/client
+#     networks:
+#       - jenkins
+
+#   docker:
+#     image: docker:19.03.12-dind
+#     container_name: docker
+#     privileged: true
+#     environment:
+#       - DOCKER_TLS_CERTDIR=/certs
+#     volumes:
+#       - docker-certs-client:/certs/client
+#       - docker-certs-server:/certs/server
+#       - /var/run/docker.sock:/var/run/docker.sock
+#     networks:
+#       - jenkins
+
+# volumes:
+#   jenkins_home:
+#   docker-certs-client:
+#   docker-certs-server:
+
+# networks:
+#   jenkins:
